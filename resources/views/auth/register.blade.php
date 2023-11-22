@@ -20,6 +20,17 @@
         </div>
 
         <div class="fv-row mb-8">
+            <input type="number" placeholder="Phone Number"
+                class="form-control bg-transparent @error('phone_number') is-invalid @enderror" name="phone_number"
+                value="{{ old('phone_number') }}" required />
+            @error('phone_number')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="fv-row mb-8">
             <input type="email" placeholder="Email"
                 class="form-control bg-transparent @error('email') is-invalid @enderror" name="email"
                 value="{{ old('email') }}" required autocomplete="email" />
