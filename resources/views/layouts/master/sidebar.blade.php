@@ -48,21 +48,24 @@
                         <span class="menu-title">Chat</span>
                         <span class="menu-arrow"></span>
                     </span>
-                    <div class="menu-sub menu-sub-accordion">
+                    <div
+                        class="menu-sub menu-sub-accordion {{ request()->routeIs('chat.private', 'chat.group') ? 'hover show' : '' }}">
                         <div class="menu-item">
-                            <a class="menu-link" href="">
+                            <a class="menu-link {{ request()->routeIs('chat.private') ? 'active' : '' }}"
+                                href="{{ route('chat.private') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Private Chat</span>
+                                <span class="menu-title">Private</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="">
+                            <a class="menu-link {{ request()->routeIs('chat.group') ? 'active' : '' }}"
+                                href="{{ route('chat.group') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Group Chat</span>
+                                <span class="menu-title">Group</span>
                             </a>
                         </div>
                     </div>

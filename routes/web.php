@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Chat\GroupController;
+use App\Http\Controllers\Chat\PrivateController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('chat/private', [PrivateController::class, 'index'])->name('chat.private');
+    Route::get('chat/group', [GroupController::class, 'index'])->name('chat.group');
+});
