@@ -213,8 +213,7 @@
                                     <!--end::Avatar-->
                                     <!--begin::Details-->
                                     <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Francis
+                                        <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Francis
                                             Mitcham</a>
                                         <div class="fw-semibold text-muted">f.mit@kpmg.com</div>
                                     </div>
@@ -2471,8 +2470,21 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="user" value="{{ auth()->user()->id }}">
 @endsection
 
 @push('js')
+    @vite('resources/js/app.js')
     <script src="{{ asset('assets/js/pages/chat/index.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            var user = $('input[name="user"]').val();
+            var channel = window.Echo.private(`progress-channel.${user}`);
+            channel.subscribed(function() {
+                console.log('subcribed!!');
+            }).listen(`.progress.fingers.import`, (response) => {
+                console.log(response);
+            });
+        });
+    </script>
 @endpush
