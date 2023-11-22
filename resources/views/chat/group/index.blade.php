@@ -2491,28 +2491,17 @@
                                         <!--begin::Separator-->
                                         <div class="border-bottom border-gray-300 border-bottom-dashed">
                                         </div>
-                                        <!--end::Separator-->
-
-                                        <!--begin::User-->
                                         <div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="16">
-                                            <!--begin::Details-->
                                             <div class="d-flex align-items-center">
-                                                <!--begin::Checkbox-->
                                                 <label class="form-check form-check-custom form-check-solid me-5">
                                                     <input class="form-check-input" type="checkbox" name="users"
                                                         data-kt-check="true" data-kt-check-target="[data-user-id='16']"
                                                         value="16" />
                                                 </label>
-                                                <!--end::Checkbox-->
-
-                                                <!--begin::Avatar-->
                                                 <div class="symbol symbol-35px symbol-circle">
                                                     <span class="symbol-label bg-light-info text-info fw-semibold">
                                                         A </span>
                                                 </div>
-                                                <!--end::Avatar-->
-
-                                                <!--begin::Details-->
                                                 <div class="ms-5">
                                                     <a href="#"
                                                         class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Robert
@@ -2521,11 +2510,7 @@
                                                     <div class="fw-semibold text-muted">
                                                         robert@benko.com</div>
                                                 </div>
-                                                <!--end::Details-->
                                             </div>
-                                            <!--end::Details-->
-
-                                            <!--begin::Access menu-->
                                             <div class="ms-2 w-100px">
                                                 <select class="form-select form-select-solid form-select-sm"
                                                     data-control="select2" data-hide-search="true">
@@ -2534,15 +2519,8 @@
                                                     <option value="3" selected>Can Edit</option>
                                                 </select>
                                             </div>
-                                            <!--end::Access menu-->
                                         </div>
-                                        <!--end::User-->
-
-
                                     </div>
-                                    <!--end::Users-->
-
-                                    <!--begin::Actions-->
                                     <div class="d-flex flex-center mt-15">
                                         <button type="reset" id="kt_modal_users_search_reset"
                                             data-bs-dismiss="modal" class="btn btn-active-light me-3">
@@ -2554,12 +2532,8 @@
                                             Add Selected Users
                                         </button>
                                     </div>
-                                    <!--end::Actions-->
                                 </div>
-                                <!--end::Results-->
-                                <!--begin::Empty-->
                                 <div data-kt-search-element="empty" class="text-center d-none">
-                                    <!--begin::Message-->
                                     <div class="fw-semibold py-10">
                                         <div class="text-gray-600 fs-3 mb-2">No users found
                                         </div>
@@ -2567,31 +2541,39 @@
                                         <div class="text-muted fs-6">Try to search by username,
                                             full name or email...</div>
                                     </div>
-                                    <!--end::Message-->
-
-                                    <!--begin::Illustration-->
                                     <div class="text-center px-5">
                                         <img src="../../assets/media/illustrations/sketchy-1/1.png" alt=""
                                             class="w-100 h-200px h-sm-325px" />
                                     </div>
-                                    <!--end::Illustration-->
                                 </div>
-                                <!--end::Empty-->
                             </div>
-                            <!--end::Wrapper-->
                         </div>
-                        <!--end::Search-->
                     </div>
-                    <!--end::Modal body-->
                 </div>
-                <!--end::Modal content-->
             </div>
-            <!--end::Modal dialog-->
         </div>
-        <!--end::Modal - Users Search--><!--end::Modals-->
     </div>
 @endsection
 
 @push('js')
+    @vite('resources/js/app.js')
     <script src="{{ asset('assets/js/pages/chat/index.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            var roomId = 1;
+            window.Echo.join(`chat.${roomId}`)
+                .here((users) => {
+                    console.log(users);
+                })
+                .joining((user) => {
+                    console.log("join : " + user.name);
+                })
+                .leaving((user) => {
+                    console.log("leave : " + user.name);
+                })
+                .error((error) => {
+                    console.error(error);
+                });
+        });
+    </script>
 @endpush

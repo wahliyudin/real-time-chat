@@ -43,7 +43,8 @@
     </script>
     <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
         <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
-            <div class="app-wrapper  flex-column flex-row-fluid mt-0" id="kt_app_wrapper">
+            @include('layouts.master.header')
+            <div class="app-wrapper  flex-column flex-row-fluid" id="kt_app_wrapper">
                 @include('layouts.master.sidebar')
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                     <div class="d-flex flex-column flex-column-fluid">
